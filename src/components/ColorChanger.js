@@ -26,7 +26,7 @@ class ColorChanger extends Component{
     getHex = (e) => {
         let hex = e.target.dataset.color;
         this.setState({
-            hex: hex
+        hex
         });
     };
     togglePreset = () => {
@@ -71,12 +71,10 @@ class ColorChanger extends Component{
         }
     };
     cancelColor = () => {
-        if(this.state.isOpenSlider){
-            this.setState({
-                isOpenSlider: !this.state.isOpenSlider,
-                hex: this.state.hex
-            });
-        }
+        this.setState({
+            isOpenSlider: !this.state.isOpenSlider,
+            hex: this.state.hex
+        });
     };
     hexToRgb = () => {
         let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(this.state.hex);
