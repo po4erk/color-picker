@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import DropdownPreset from './DropdownPreset';
 import DropdownSlider from './DropdownSlider'
 

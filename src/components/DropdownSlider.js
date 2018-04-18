@@ -1,10 +1,8 @@
 import React from 'react';
 
-function DropdownSlider(props){
-    let {updateColor,fullColorHex,cancelColor,red,green,blue} = props;
+const DropdownSlider = ({updateColor,fullColorHex,cancelColor,red,green,blue}) => {
     let style = {background: `rgb(${red},${green},${blue})`};
     return(
-        
         <div className='dropdown_slider'>
         <div className='dropdown_color' style={style}></div>
             <div className="input_range">
