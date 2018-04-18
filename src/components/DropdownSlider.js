@@ -7,17 +7,17 @@ function DropdownSlider(props){
         
         <div className='dropdown_slider'>
         <div className='dropdown_color' style={style}></div>
-            <div className="r">
+            <div className="input_range">
                 <label htmlFor="red" className="input_range">R</label>
                 <input id="red" className="input_range" type="range" min="0" max="255" steps="1" value={red}
                     onChange={updateColor} />
             </div>
-            <div className='g'>
+            <div className='input_range'>
                 <label htmlFor="green" className="input_range">G</label>
                 <input id="green" className="input_range" type="range" min="0" max="255" steps="1" value={green}
                     onChange={updateColor} />
             </div>
-            <div className='b'>
+            <div className='input_range'>
                 <label htmlFor="blue" className="input_range">B</label>
                 <input id="blue" className="input_range" type="range" min="0" max="255" steps="1" value={blue}
                     onChange={updateColor} />

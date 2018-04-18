@@ -63,10 +63,10 @@ body{
   content: '';
   cursor: pointer; 
   position: absolute;
-  left: 309px; 
-  top: -50px;
-  border: 15px solid transparent;
-  border-top: 15px solid grey;
+  left: 314px; 
+  top: -48px;
+  border: 10px solid transparent;
+  border-top: 10px solid grey;
 }
 .dropdown_preset{
   width: 200px;
@@ -107,6 +107,7 @@ body{
   z-index: 0;
 }
 .dropdown_preset div{
+  font-weight: 600;
   color: black;
   height: 40px;
   cursor: pointer;
@@ -177,7 +178,7 @@ input[type="range"] {
   outline: none;
   height: 3px;
   border-radius: 5px;
-  width: 200px;
+  width: 210px;
 }
 input[type="range"]::-webkit-slider-thumb{
   -webkit-appearance: none;
@@ -187,7 +188,6 @@ input[type="range"]::-webkit-slider-thumb{
   border-radius: 10px;
   cursor: pointer;
   border: 1px solid white;
-  transition: .1s;
 }
 #red {
   background: linear-gradient(90deg, rgb(255,0,0), rgb(0,0,0));
@@ -198,17 +198,17 @@ input[type="range"]::-webkit-slider-thumb{
 #blue {
   background: linear-gradient(90deg, rgb(0,0,255), rgb(0,0,0));
 }
-.r,.g,.b{
+.input_range{
   color: #989899;
   height: 40px;
   width: 250px;
-  padding: 5px;
   padding-top: 0px;
 }
 label{
   position: relative;
   top: 4px;
   padding: 10px;
+  font-weight: 600;
   color: #989899;
 }
 .btnOk,
@@ -220,6 +220,7 @@ label{
   margin-top: -10px;
   border: 1px solid grey;
   cursor: pointer;
+  font-size: 10px;
   font-weight: 600;
 }
 .btnCancel{
@@ -229,4 +230,5 @@ label{
 .btnOk{
   background: #61a750;
   color: white;
+  margin-right: 10px;
 }
