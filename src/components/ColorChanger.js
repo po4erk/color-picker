@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import DropdownPreset from './DropdownPreset';
 import DropdownSlider from './DropdownSlider'
 
@@ -12,15 +13,19 @@ class ColorChanger extends Component{
         blue: 0
     };
     componentDidMount(){
-        document.addEventListener('click',(e) => {
-            let target = e.target.className;
-            if(target !== 'dropdown' && target !== 'color' &&
-               target !== 'dropdown_slider' && target !== 'input_range') 
+        document.addEventListener('click', this.handleClickOutside);
+    }
+    componentWillUnmount(){
+        document.removeEventListener('click', this.handleClickOutside);
+    }
+    handleClickOutside = (e) => {
+        const element = ReactDOM.findDOMNode(this);
+        if ((!element || !element.contains(e.target))) {
             this.setState({
                 isOpenPreset: false,
-                isOpenSlider: false
+                isOpenSlider: false,
             });
-        });
+        }
     }
     
     getHex = (e) => {

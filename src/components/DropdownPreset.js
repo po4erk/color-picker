@@ -1,7 +1,6 @@
 import React from 'react';
 
-function DropdownPreset(props){
-    let {colors,getHex} = props;
+const DropdownPreset = ({colors,getHex}) => {
     return(
         <div className='dropdown_preset'>
             <div className='red' data-color={colors.red} onClick={getHex}>Red</div>
