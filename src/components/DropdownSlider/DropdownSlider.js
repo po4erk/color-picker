@@ -8,13 +8,12 @@ const DropdownSlider = ({
 	green,
 	blue,
 }) => {
-	const style = { background: `rgb(${red},${green},${blue})` };
 	const rgb = [
 		{ name: 'R', color: red, id: 'red' },
 		{ name: 'G', color: green, id: 'green' },
 		{ name: 'B', color: blue, id: 'blue' },
 	];
-
+	
 	const rgbInputs = rgb.map(({ name, id, color }) => (
 		<div className="input_range" key={id}>
 			<label htmlFor={id} className="input_range">
@@ -35,7 +34,6 @@ const DropdownSlider = ({
 
 	return (
 		<div className="dropdown_slider">
-			<div className="dropdown_color" style={style} />
 			{rgbInputs}
 			<button className="btnOk" onClick={makeHex}>
 				OK

@@ -11,6 +11,7 @@ class ColorChanger extends Component {
 		red: 0,
 		green: 0,
 		blue: 0,
+		background: '#ffcc33'
 	};
 	componentDidMount() {
 		document.addEventListener('click', this.handleClickOutside);
@@ -24,6 +25,7 @@ class ColorChanger extends Component {
 			this.setState({
 				isOpenPreset: false,
 				isOpenSlider: false,
+				background: this.state.hex
 			});
 		}
 	};
@@ -31,6 +33,7 @@ class ColorChanger extends Component {
 		const hex = e.target.dataset.color;
 		this.setState({
 			hex,
+			background: hex
 		});
 	};
 	togglePreset = () => {
@@ -65,12 +68,14 @@ class ColorChanger extends Component {
 	updateColor = name => e => {
 		this.setState({
 			[name]: e.target.value,
+			background: `rgb(${this.state.red},${this.state.green},${this.state.blue}`
 		});
 	};
 	cancelColor = () => {
 		this.setState({
 			isOpenSlider: !this.state.isOpenSlider,
 			hex: this.state.hex,
+			background: this.state.hex
 		});
 	};
 	makeHex = () => {
@@ -84,6 +89,7 @@ class ColorChanger extends Component {
 		this.setState({
 			isOpenSlider: !this.state.isOpenSlider,
 			hex,
+			background: this.state.hex
 		});
 	};
 	fullColorRgb = () => {
@@ -97,7 +103,7 @@ class ColorChanger extends Component {
 
 	render() {
 		const upperCase = this.state.hex.toUpperCase();
-		const style = { backgroundColor: this.state.hex };
+		const style = { background: this.state.background };
 		const colorPresets = this.state.isOpenPreset && (
 			<DropdownPreset getHex={this.getHex} />
 		);
