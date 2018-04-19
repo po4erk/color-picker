@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import DropdownPreset from '../DropdownPreset/DropdownPreset';
 import DropdownSlider from '../DropdownSlider/DropdownSlider';
 
@@ -19,7 +18,7 @@ class ColorChanger extends Component{
         document.removeEventListener('click', this.handleClickOutside);
     }
     handleClickOutside = (e) => {
-        const element = ReactDOM.findDOMNode(this);
+        const element = this.ColorChanger;
         if ((!element || !element.contains(e.target))) {
             this.setState({
                 isOpenPreset: false,
@@ -33,46 +32,40 @@ class ColorChanger extends Component{
         hex
         });
     };
+    //state в переменную
     togglePreset = () => {
-        if(this.state.isOpenSlider){
+        let openPreset = this.state.isOpenPreset,
+            openSlider = this.state.isOpenSlider;
+        if(openSlider){
             this.setState({
-                isOpenSlider: !this.state.isOpenSlider,
-                isOpenPreset: !this.state.isOpenPreset 
+                isOpenSlider: !openSlider,
+                isOpenPreset: !openPreset 
              });
         }else{
             this.setState({
-                isOpenPreset: !this.state.isOpenPreset 
+                isOpenPreset: !openPreset 
              });
         }
     };
     toggleSlider = () => {
+        let openPreset = this.state.isOpenPreset,
+            openSlider = this.state.isOpenSlider;
         this.hexToRgb();
-        if(this.state.isOpenPreset){
+        if(openPreset){
             this.setState({
-                isOpenSlider: !this.state.isOpenSlider,
-                isOpenPreset: !this.state.isOpenPreset 
+                isOpenSlider: !openSlider,
+                isOpenPreset: !openPreset 
              });
         }else{
             this.setState({
-                isOpenSlider: !this.state.isOpenSlider 
+                isOpenSlider: !openSlider
              });
         }
     };
-    updateColor = (e) => {
-        const target = e.target.id;
-        if(target === 'red'){
-            this.setState({
-                red: e.target.value,
-            });
-        }else if(target === 'blue'){
-            this.setState({
-                blue: e.target.value,
-            });
-        }else if(target === 'green'){
-            this.setState({
-                green: e.target.value,
-            });
-        }
+    updateColor = (name) => (e) => {
+        this.setState({
+            [name]: e.target.value,
+        });
     };
     cancelColor = () => {
         this.setState({
@@ -80,6 +73,7 @@ class ColorChanger extends Component{
             hex: this.state.hex
         });
     };
+    //go to utils
     hexToRgb = () => {
         const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(this.state.hex);
         let red = parseInt(result[1], 16),
@@ -99,15 +93,18 @@ class ColorChanger extends Component{
             blue
         })
     }
-    fullColorHex = () => {
+    makeHex = () => {
         const red = this.rgbToHex(this.state.red);
         const green = this.rgbToHex(this.state.green);
         const blue = this.rgbToHex(this.state.blue);
-        const rgb = `#${red}${green}${blue}`;
+        const hex = `#${red}${green}${blue}`;
+        this.fullColorHex(hex);
+    }
+    fullColorHex = (hex) => {
         if(this.state.isOpenSlider)
             this.setState({
                 isOpenSlider: !this.state.isOpenSlider,
-                hex: rgb
+                hex
             });
     };
     
@@ -116,13 +113,13 @@ class ColorChanger extends Component{
         const style = {backgroundColor: this.state.hex}
         const colorPresets = this.state.isOpenPreset && <DropdownPreset getHex={this.getHex}/>
         const colorSliders = this.state.isOpenSlider && <DropdownSlider updateColor={this.updateColor}
-                                                                        fullColorHex={this.fullColorHex}
+                                                                        makeHex={this.makeHex}
                                                                         cancelColor={this.cancelColor}
                                                                         red={this.state.red}
                                                                         green={this.state.green}
                                                                         blue={this.state.blue}/>  
         return(
-            <div>
+            <div ref={ (el) => this.ColorChanger = el}>
                 <div className='color_hex'>{upperCase}</div>
                 <div className='color_wrapper'>
                     <div className='color' style={style} onClick={this.toggleSlider}></div>
