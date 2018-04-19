@@ -34,27 +34,31 @@ class ColorChanger extends Component {
 		});
 	};
 	togglePreset = () => {
-		if (this.state.isOpenSlider) {
+		const { isOpenSlider } = this.state,
+			{ isOpenPreset } = this.state;
+		if (isOpenSlider) {
 			this.setState({
-				isOpenSlider: !this.state.isOpenSlider,
-				isOpenPreset: !this.state.isOpenPreset,
+				isOpenSlider: !isOpenSlider,
+				isOpenPreset: !isOpenPreset,
 			});
 		} else {
 			this.setState({
-				isOpenPreset: !this.state.isOpenPreset,
+				isOpenPreset: !isOpenPreset,
 			});
 		}
 	};
 	toggleSlider = () => {
+		const { isOpenSlider } = this.state,
+			{ isOpenPreset } = this.state;
 		this.fullColorRgb();
-		if (this.state.isOpenPreset) {
+		if (isOpenPreset) {
 			this.setState({
-				isOpenSlider: !this.state.isOpenSlider,
-				isOpenPreset: !this.state.isOpenPreset,
+				isOpenSlider: !isOpenSlider,
+				isOpenPreset: !isOpenPreset,
 			});
 		} else {
 			this.setState({
-				isOpenSlider: !this.state.isOpenSlider,
+				isOpenSlider: !isOpenSlider,
 			});
 		}
 	};
