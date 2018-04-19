@@ -17,7 +17,7 @@ const DropdownSlider = ({
 
 	const rgbInputs = rgb.map(({ name, id, color }) => (
 		<div className="input_range" key={id}>
-			<label htmlFor={rgb.id} className="input_range">
+			<label htmlFor={id} className="input_range">
 				{name}
 			</label>
 			<input
