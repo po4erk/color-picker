@@ -1,5 +1,5 @@
 import React from 'react';
-import ColorChanger from './ColorChanger';
+import ColorChanger from '../ColorChanger/ColorChanger';
 
 const ColorPicker = () => {
     return(

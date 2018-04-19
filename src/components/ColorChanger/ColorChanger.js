@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import DropdownPreset from './DropdownPreset';
-import DropdownSlider from './DropdownSlider'
+import DropdownPreset from '../DropdownPreset/DropdownPreset';
+import DropdownSlider from '../DropdownSlider/DropdownSlider';
 
 class ColorChanger extends Component{
     state = {
@@ -88,11 +88,10 @@ class ColorChanger extends Component{
             blue: parseInt(result[3], 16)
         }) : null;
     };
+    
     rgbToHex = (rgb) => { 
         let hex = Number(rgb).toString(16);
-        if (hex.length < 2) {
-             hex += "0";
-        }
+        if(hex.length < 2) hex += "0";
         return hex;
     };
     fullColorHex = () => {

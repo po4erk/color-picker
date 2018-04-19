@@ -1,5 +1,5 @@
 import React from 'react';
-import colors from '../constants'
+import colors from '../../constants'
 
 const DropdownPreset = ({getHex}) => {
     const colorsBox = colors.map((colors) => 
