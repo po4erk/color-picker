@@ -33,33 +33,28 @@ class ColorChanger extends Component {
 			hex,
 		});
 	};
-	//state в переменную
 	togglePreset = () => {
-		let openPreset = this.state.isOpenPreset,
-			openSlider = this.state.isOpenSlider;
-		if (openSlider) {
+		if (this.state.isOpenSlider) {
 			this.setState({
-				isOpenSlider: !openSlider,
-				isOpenPreset: !openPreset,
+				isOpenSlider: !this.state.isOpenSlider,
+				isOpenPreset: !this.state.isOpenPreset,
 			});
 		} else {
 			this.setState({
-				isOpenPreset: !openPreset,
+				isOpenPreset: !this.state.isOpenPreset,
 			});
 		}
 	};
 	toggleSlider = () => {
-		let openPreset = this.state.isOpenPreset,
-			openSlider = this.state.isOpenSlider;
 		this.fullColorRgb();
-		if (openPreset) {
+		if (this.state.isOpenPreset) {
 			this.setState({
-				isOpenSlider: !openSlider,
-				isOpenPreset: !openPreset,
+				isOpenSlider: !this.state.isOpenSlider,
+				isOpenPreset: !this.state.isOpenPreset,
 			});
 		} else {
 			this.setState({
-				isOpenSlider: !openSlider,
+				isOpenSlider: !this.state.isOpenSlider,
 			});
 		}
 	};
@@ -74,7 +69,6 @@ class ColorChanger extends Component {
 			hex: this.state.hex,
 		});
 	};
-	//go to utils
 	makeHex = () => {
 		const red = rgbToHex(this.state.red),
 			green = rgbToHex(this.state.green),
