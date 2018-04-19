@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DropdownPreset from '../DropdownPreset/DropdownPreset';
 import DropdownSlider from '../DropdownSlider/DropdownSlider';
+import { hexToRgb, rgbToHex } from '../Utils/Utils';
 
 class ColorChanger extends Component {
 	state = {
@@ -50,7 +51,7 @@ class ColorChanger extends Component {
 	toggleSlider = () => {
 		let openPreset = this.state.isOpenPreset,
 			openSlider = this.state.isOpenSlider;
-		this.hexToRgb();
+		this.fullColorRgb();
 		if (openPreset) {
 			this.setState({
 				isOpenSlider: !openSlider,
@@ -74,40 +75,26 @@ class ColorChanger extends Component {
 		});
 	};
 	//go to utils
-	hexToRgb = () => {
-		const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(
-			this.state.hex
-		);
-		let red = parseInt(result[1], 16),
-			green = parseInt(result[2], 16),
-			blue = parseInt(result[3], 16);
-		this.fullColorRgb(red, green, blue);
-	};
-	rgbToHex = rgb => {
-		let hex = Number(rgb).toString(16);
-		if (hex.length < 2) hex += '0';
-		return hex;
-	};
-	fullColorRgb = (red, green, blue) => {
-		this.setState({
-			red,
-			green,
-			blue,
-		});
-	};
 	makeHex = () => {
-		const red = this.rgbToHex(this.state.red);
-		const green = this.rgbToHex(this.state.green);
-		const blue = this.rgbToHex(this.state.blue);
-		const hex = `#${red}${green}${blue}`;
+		const red = rgbToHex(this.state.red),
+			green = rgbToHex(this.state.green),
+			blue = rgbToHex(this.state.blue),
+			hex = `#${red}${green}${blue}`;
 		this.fullColorHex(hex);
 	};
 	fullColorHex = hex => {
-		if (this.state.isOpenSlider)
-			this.setState({
-				isOpenSlider: !this.state.isOpenSlider,
-				hex,
-			});
+		this.setState({
+			isOpenSlider: !this.state.isOpenSlider,
+			hex,
+		});
+	};
+	fullColorRgb = () => {
+		let result = hexToRgb(this.state.hex);
+		this.setState({
+			red: parseInt(result[1], 16),
+			green: parseInt(result[2], 16),
+			blue: parseInt(result[3], 16),
+		});
 	};
 
 	render() {
