@@ -1,12 +1,13 @@
 import React from 'react';
+import colors from '../constants'
 
-const DropdownPreset = ({colors,getHex}) => {
+const DropdownPreset = ({getHex}) => {
+    const colorsBox = colors.map((colors) => 
+        <div className={colors.color} data-color={colors.hex} key={colors.hex} onClick={getHex}>{colors.color}</div>
+    )
     return(
         <div className='dropdown_preset'>
-            <div className='red' data-color={colors.red} onClick={getHex}>Red</div>
-            <div className='yellow' data-color={colors.yellow} onClick={getHex}>Yellow</div>
-            <div className='green' data-color={colors.green} onClick={getHex}>Green</div>
-            <div className='blue' data-color={colors.blue} onClick={getHex}>Blue</div>
+            {colorsBox}
         </div>
     )
 }
