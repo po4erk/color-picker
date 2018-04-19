@@ -82,18 +82,23 @@ class ColorChanger extends Component{
     };
     hexToRgb = () => {
         const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(this.state.hex);
-        return result ? this.setState({
-            red: parseInt(result[1], 16),
-            green: parseInt(result[2], 16),
-            blue: parseInt(result[3], 16)
-        }) : null;
+        let red = parseInt(result[1], 16),
+            green = parseInt(result[2], 16),
+            blue = parseInt(result[3], 16);
+        this.fullColorRgb(red,green,blue);
     };
-    
     rgbToHex = (rgb) => { 
         let hex = Number(rgb).toString(16);
         if(hex.length < 2) hex += "0";
         return hex;
     };
+    fullColorRgb = (red,green,blue) => {
+        this.setState({
+            red,
+            green,
+            blue
+        })
+    }
     fullColorHex = () => {
         const red = this.rgbToHex(this.state.red);
         const green = this.rgbToHex(this.state.green);
