@@ -66,15 +66,15 @@ class ColorChanger extends Component {
 		}
 	};
 	updateColor = name => e => {
-		const {red,green,blue} = this.state,
-				background = `rgb(${red},${green},${blue}`;
+		const { red, green, blue } = this.state,
+			background = `rgb(${red},${green},${blue}`;
 		this.setState({
 			[name]: e.target.value,
 			background,
 		});
 	};
 	cancelColor = () => {
-		const {isOpenSlider,hex} = this.state;
+		const { isOpenSlider, hex } = this.state;
 		this.setState({
 			isOpenSlider: !isOpenSlider,
 			hex,
@@ -82,15 +82,15 @@ class ColorChanger extends Component {
 		});
 	};
 	makeHex = () => {
-		const {red,green,blue} = this.state;
+		const { red, green, blue } = this.state;
 		const rgbRed = rgbToHex(red),
-				rgbGreen = rgbToHex(green),
-				rgbBlue = rgbToHex(blue),
+			rgbGreen = rgbToHex(green),
+			rgbBlue = rgbToHex(blue),
 			hex = `#${rgbRed}${rgbGreen}${rgbBlue}`;
 		this.fullColorHex(hex);
 	};
 	fullColorHex = hex => {
-		const {isOpenSlider} = this.state;
+		const { isOpenSlider } = this.state;
 		this.setState({
 			isOpenSlider: !isOpenSlider,
 			hex,
