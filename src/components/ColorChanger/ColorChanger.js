@@ -11,7 +11,7 @@ class ColorChanger extends Component {
 		red: 0,
 		green: 0,
 		blue: 0,
-		background: '#ffcc33'
+		background: '#ffcc33',
 	};
 	componentDidMount() {
 		document.addEventListener('click', this.handleClickOutside);
@@ -25,7 +25,7 @@ class ColorChanger extends Component {
 			this.setState({
 				isOpenPreset: false,
 				isOpenSlider: false,
-				background: this.state.hex
+				background: this.state.hex,
 			});
 		}
 	};
@@ -33,7 +33,7 @@ class ColorChanger extends Component {
 		const hex = e.target.dataset.color;
 		this.setState({
 			hex,
-			background: hex
+			background: hex,
 		});
 	};
 	togglePreset = () => {
@@ -68,14 +68,16 @@ class ColorChanger extends Component {
 	updateColor = name => e => {
 		this.setState({
 			[name]: e.target.value,
-			background: `rgb(${this.state.red},${this.state.green},${this.state.blue}`
+			background: `rgb(${this.state.red},${this.state.green},${
+				this.state.blue
+			}`,
 		});
 	};
 	cancelColor = () => {
 		this.setState({
 			isOpenSlider: !this.state.isOpenSlider,
 			hex: this.state.hex,
-			background: this.state.hex
+			background: this.state.hex,
 		});
 	};
 	makeHex = () => {
@@ -89,15 +91,15 @@ class ColorChanger extends Component {
 		this.setState({
 			isOpenSlider: !this.state.isOpenSlider,
 			hex,
-			background: this.state.hex
+			background: this.state.hex,
 		});
 	};
 	fullColorRgb = () => {
-		let result = hexToRgb(this.state.hex);
+		let { red, green, blue } = hexToRgb(this.state.hex);
 		this.setState({
-			red: parseInt(result[1], 16),
-			green: parseInt(result[2], 16),
-			blue: parseInt(result[3], 16),
+			red,
+			green,
+			blue,
 		});
 	};
 
